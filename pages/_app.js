@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 function MyApp({ Component, pageProps }) {
   return (
     <MDXProvider components={MDXComponents}>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-6">
         <Navbar />
         <Component {...pageProps} />
       </div>

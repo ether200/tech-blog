@@ -13,6 +13,9 @@ module.exports = {
       screens: {
         ll: "1170px",
       },
+      gridTemplateColumns: {
+        auto: "repeat(auto-fit, 200px)",
+      },
     },
   },
   variants: {

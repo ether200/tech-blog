@@ -8,10 +8,10 @@ const RecentlyPublished = () => {
       <h2 className="text-2xl uppercase text-green-500 mb-7">
         recently published
       </h2>
-      <div className="flex flex-col ll:flex-row ll:space-x-5">
+      <div className="flex flex-col ll:flex-row ll:space-x-8">
         <div className="flex flex-col">
           <article className="flex flex-col mb-6 w-full lg:space-x-5 lg:flex-row">
-            <div className="relative w-full h-97 lg:flex-shrink-0 lg:w-99 lg:h-80">
+            <div className="relative w-full h-80 md:h-97 lg:flex-shrink-0 lg:w-99 lg:h-80">
               <Image
                 layout="fill"
                 objectFit="fill"
@@ -21,85 +21,87 @@ const RecentlyPublished = () => {
                 quality={100}
               />
             </div>
-            <div className="flex flex-col">
-              <span className="uppercase rounded-md text-gray-500 font-semibold">
+            <div className="flex flex-col items-center lg:items-start">
+              <span className="mt-2 uppercase rounded-md text-gray-500 font-semibold lg:mt-0">
                 tailwind
               </span>
-              <h2 className="my-4 uppercase font-medium text-gray-800 text-2xl">
+              <h2 className="my-2 uppercase font-medium text-gray-800 text-2xl lg:my-4">
                 tailwind css
               </h2>
               <div className="h-0.5 w-16 mb-4 bg-gray-300"></div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 lg:mb-4">
                 Learn why I switched my Next.js blog to use Tailwind CSS and how
                 it impacted performance.
               </p>
-              <a className="cursor-pointer text-green-500 uppercase hover:text-green-600">
+              <a className="my-2 cursor-pointer text-green-500 uppercase hover:text-green-600 lg:my-0">
                 Read More
               </a>
-              <div className="pt-5 border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold">
+              <div className="w-full border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold lg:pt-5 ">
                 <span>May 11th, 2020</span>
                 <span>22 min read</span>
               </div>
             </div>
           </article>
           {/* Cut HERE */}
-          <article className="flex space-x-5 mb-6 w-full">
-            <div className="flex-shrink-0 relative w-99 h-80">
+          <article className="flex flex-col mb-6 w-full lg:space-x-5 lg:flex-row">
+            <div className="relative w-full h-80 md:h-97 lg:flex-shrink-0 lg:w-99 lg:h-80">
               <Image
                 layout="fill"
                 objectFit="fill"
                 src="/tailwind.png"
                 alt="Article pic"
                 className="rounded-md"
+                quality={100}
               />
             </div>
-            <div className="flex flex-col">
-              <span className="uppercase rounded-md text-gray-500 font-semibold">
+            <div className="flex flex-col items-center lg:items-start">
+              <span className="mt-2 uppercase rounded-md text-gray-500 font-semibold lg:mt-0">
                 tailwind
               </span>
-              <h2 className="my-4 uppercase font-medium text-gray-800 text-2xl">
+              <h2 className="my-2 uppercase font-medium text-gray-800 text-2xl lg:my-4">
                 tailwind css
               </h2>
               <div className="h-0.5 w-16 mb-4 bg-gray-300"></div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 lg:mb-4">
                 Learn why I switched my Next.js blog to use Tailwind CSS and how
                 it impacted performance.
               </p>
-              <a className="cursor-pointer text-green-500 uppercase hover:text-green-600">
+              <a className="my-2 cursor-pointer text-green-500 uppercase hover:text-green-600 lg:my-0">
                 Read More
               </a>
-              <div className="pt-5 border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold">
+              <div className="w-full border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold lg:pt-5 ">
                 <span>May 11th, 2020</span>
                 <span>22 min read</span>
               </div>
             </div>
           </article>
-          <article className="flex space-x-5 mb-6 w-full">
-            <div className="flex-shrink-0 relative w-99 h-80">
+          <article className="flex flex-col mb-6 w-full lg:space-x-5 lg:flex-row">
+            <div className="relative w-full h-80 md:h-97 lg:flex-shrink-0 lg:w-99 lg:h-80">
               <Image
                 layout="fill"
                 objectFit="fill"
                 src="/tailwind.png"
                 alt="Article pic"
                 className="rounded-md"
+                quality={100}
               />
             </div>
-            <div className="flex flex-col">
-              <span className="uppercase rounded-md text-gray-500 font-semibold">
+            <div className="flex flex-col items-center lg:items-start">
+              <span className="mt-2 uppercase rounded-md text-gray-500 font-semibold lg:mt-0">
                 tailwind
               </span>
-              <h2 className="my-4 uppercase font-medium text-gray-800 text-2xl">
+              <h2 className="my-2 uppercase font-medium text-gray-800 text-2xl lg:my-4">
                 tailwind css
               </h2>
               <div className="h-0.5 w-16 mb-4 bg-gray-300"></div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 lg:mb-4">
                 Learn why I switched my Next.js blog to use Tailwind CSS and how
                 it impacted performance.
               </p>
-              <a className="cursor-pointer text-green-500 uppercase hover:text-green-600">
+              <a className="my-2 cursor-pointer text-green-500 uppercase hover:text-green-600 lg:my-0">
                 Read More
               </a>
-              <div className="pt-5 border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold">
+              <div className="w-full border-t border-gray-300 flex justify-between mt-auto text-gray-500 font-semibold lg:pt-5 ">
                 <span>May 11th, 2020</span>
                 <span>22 min read</span>
               </div>
@@ -107,7 +109,7 @@ const RecentlyPublished = () => {
           </article>
         </div>
         {/* Sidebar */}
-        <aside className="grid grid-cols-3 gap-4 ll:w-60 ll:flex flex-col ll:space-y-4">
+        <aside className="grid grid-cols-auto gap-8 justify-center my-6 ll:w-60 ll:flex ll:flex-col ll:justify-start ll:space-y-4 ll:my-0">
           {/* ABOUT ME */}
           <div>
             <div className="relative text-center mb-4">
