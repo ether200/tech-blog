@@ -1,33 +1,33 @@
 import Image from "next/image";
+import { parseISO, format } from "date-fns";
 
 const BlogLayout = ({ children, frontMatter }) => {
   return (
     <article className="flex flex-col w-full">
-      <div className="relative w-full h-80 sm:h-96 md:h-99">
+      <div className="relative rounded-md w-full h-80 sm:h-96 md:h-99 shadow-xl">
         <Image
           layout="fill"
           objectFit="fill"
           src={frontMatter.image}
           alt="Article pic"
-          className="rounded-md"
+          className="overflow-hidden rounded-md"
           quality={100}
         />
       </div>
       <div className="flex flex-col items-center">
-        <span className="mt-6 uppercase rounded-md text-gray-500 dark:text-gray-300 font-semibold">
-          {frontMatter.subject}
-        </span>
-        <h2 className="my-4 uppercase font-medium text-gray-800 dark:text-gray-100 text-2xl">
+        <h2 className="mb-4 mt-8 uppercase font-semibold text-gray-800 dark:text-gray-100 text-3xl">
           {frontMatter.title}
         </h2>
-        <div className="h-0.5 w-16 mb-4 bg-gray-300"></div>
+        <span className="text-gray-500 dark:text-gray-300">
+          Written by {frontMatter.writtenBy}
+        </span>
+        <span className="text-gray-500 dark:text-gray-300 mt-4 mb-8 text-sm">
+          {format(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
+        </span>
+        <div className="h-0.5 w-full bg-gray-300"></div>
       </div>
       <div className="prose my-8">{children}</div>
     </article>
-    // <div>
-    //   <h1>{frontMatter.title}</h1>
-    //   <div className="prose w-full">{children}</div>
-    // </div>
   );
 };
 

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white dark:bg-gray-900;
+  @apply bg-gray-50 dark:bg-gray-900;
 }
 
 #__next {
@@ -34,4 +34,45 @@ body {
 .prose strong,
 .prose blockquote {
   @apply text-gray-800 dark:text-white;
+}
+
+.prose code {
+  @apply rounded bg-gray-200 dark:bg-gray-700;
+}
+
+code[class*="language-"] {
+  @apply bg-transparent !important;
+}
+
+.token.property,
+.token.tag {
+  @apply text-blue-300;
+}
+
+.token.punctuation,
+.token.script-punctuation.punctuation,
+.token.operator,
+.token.arrow.operator {
+  @apply text-gray-400;
+}
+
+.token.function,
+.token.maybe-class-name {
+  @apply text-yellow-300;
+}
+
+.token.keyword.module,
+.token.keyword,
+.token.keyword.control-flow {
+  @apply text-pink-400;
+}
+
+.token.attr-name,
+.token.number {
+  @apply text-white;
+}
+
+.token.attr-value,
+.token.string {
+  @apply text-yellow-600;
 }

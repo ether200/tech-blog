@@ -1,15 +1,14 @@
 import React from "react";
 import Header from "../components/Header";
-import Preview from "../components/Preview";
 import Sidebar from "../components/Sidebar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, recentPosts, categories, headerTitle }) => {
   return (
     <>
-      <Header />
+      <Header headerTitle={headerTitle} />
       <div className="flex flex-col ll:flex-row ll:space-x-8">
         {children}
-        <Sidebar />
+        <Sidebar recentPosts={recentPosts} categories={categories} />
       </div>
     </>
   );

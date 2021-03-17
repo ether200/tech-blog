@@ -1,9 +1,9 @@
-import Head from "next/head";
 import Layout from "../layouts/Layout";
+import Head from "next/head";
 import Preview from "../components/Preview";
 import { getAllFilesFrontMatter } from "../lib/mdx";
 
-export default function Home({ posts, categories }) {
+export default function Blog({ posts, categories }) {
   return (
     <>
       <Head>
@@ -13,9 +13,9 @@ export default function Home({ posts, categories }) {
       <Layout
         recentPosts={posts.slice(0, 5)}
         categories={categories}
-        headerTitle={"recent published"}
+        headerTitle={"all posts"}
       >
-        <Preview posts={posts.slice(0, 3)} />
+        <Preview posts={posts} />
       </Layout>
     </>
   );
