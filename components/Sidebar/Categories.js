@@ -10,14 +10,14 @@ const Categories = ({ categories }) => {
         </h2>
         <div className="h-0.5 mb-4 bg-green-500 w-full absolute top-1/2 -z-1"></div>
       </div>
-      <div className="grid grid-cols-2 gap-1 justify-center items-center">
+      <div className="grid grid-cols-2 text-center gap-1">
         {categories &&
           categories.map((category) => (
             <Link
               href={`/blog/category/${category.toLowerCase()}`}
               key={category}
             >
-              <a className="uppercase mb-2 px-4 text-gray-500 dark:text-gray-300 overflow-hidden">
+              <a className="uppercase mb-2 text-gray-500 dark:text-gray-300 overflow-hidden">
                 {category}
               </a>
             </Link>
