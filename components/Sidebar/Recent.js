@@ -16,17 +16,17 @@ const Recent = ({ recentPosts }) => {
         {recentPosts &&
           recentPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <a className="relative w-full flex space-x-2 shadow-sm">
+              <a className="relative h-11 w-full flex space-x-2 shadow-sm">
                 <Image
                   layout="fixed"
                   height={44}
                   width={75}
-                  className="rounded-sm overflow-hidden "
+                  className="rounded-sm"
                   src={post.image}
-                  alt="IT IS ME"
+                  alt={post.slug}
                 />
                 <div>
-                  <h3 className="text-gray-800 dark:text-gray-100 capitalize font-semibold text-xs">
+                  <h3 className="truncate w-28 h-4 text-gray-800 dark:text-gray-100 capitalize font-semibold text-xs">
                     {post.title}
                   </h3>
                   <span className="text-xs text-gray-500 dark:text-gray-300">

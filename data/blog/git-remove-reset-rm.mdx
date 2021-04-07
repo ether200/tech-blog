@@ -1,0 +1,61 @@
+---
+title: "Git reset, rm, reverse differences."
+publishedAt: "2021-04-06"
+summary: "Learn the diffences between these commands to avoid mistakes."
+image: "/git/git.png"
+subject: "git"
+writtenBy: "Iván M"
+---
+
+## Git rm
+
+This command helps us to delete git archives without removing it's history from the version system. What does "eliminating history" means?, if we need to recover a file we'd only "travel in time" and recover the last commit before deleting such file.
+
+### How to use it?
+
+Remove the files from the **staged area** and next commit but keeps them on hard disk.
+
+```
+git rm *file name* --cached
+```
+
+Remove the files from git and hard disk.
+
+```
+git rm *file name* --force
+```
+
+## Git reset
+
+This command is used to move the project to a previous commit getting rid of later commits. When we use git reset we can't go back to the future as it removes the history and we must over write it. We **must** be careful when using this command because unlike `git checkout`, we can't go back.
+
+### How to use it?
+
+The **x** stands for how many commits we want to go back from the last one aka HEAD.
+Using git reset **HEAD** is a good way to remove the files from the **staging** area if we don't want to include x files in the next commit and therefore fix any error we made.
+
+```
+git reset *HEAD-x* || *commit id*
+```
+
+When using the flag **soft** the history is removed but keeps the changes made on **staging**, that way we can apply the newest updates to a new commit and mantain the changes locally.
+
+```
+git reset --soft *commit id* || *HEAD*
+```
+
+In case we don't want to keep any change made locally we use the **hard** flag.
+
+```
+git reset --hard *commit id* || *HEAD*
+```
+
+## Git reverse
+
+This command reverts the proyect to a past commit **making a new one** which reverts the changes. This way the changes are not removed from the history and can be accessed in the future.
+
+### How to use it?
+
+```
+git reverse *HEAD* || *commit id*
+```
