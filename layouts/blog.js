@@ -4,7 +4,7 @@ import { parseISO, format } from "date-fns";
 const BlogLayout = ({ children, frontMatter }) => {
   return (
     <article className="flex flex-col w-full">
-      <div className="relative rounded-md w-full h-80 sm:h-96 md:h-99 shadow-xl">
+      <div className="relative rounded-md w-full h-80 sm:h-96 md:h-98 xl:h-99 shadow-xl">
         <Image
           layout="fill"
           objectFit="fill"
