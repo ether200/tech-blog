@@ -1,0 +1,108 @@
+---
+title: "RegEx cheatsheet"
+publishedAt: "2021-06-14"
+summary: "Small cheatsheet to understand RegExs written in spanish."
+image: "/regex.jpeg"
+subject: "regex"
+writtenBy: "Community"
+---
+
+## RegEx cheatsheet
+
+Un custom cheatsheet para entender un poco las expresiones regulares.
+
+## Clases predefinidas y construidas.
+
+### Caracter: .
+
+- . Encuentra todo lo que es **un caracter** (anything)
+- . -Space- encuentra cualquier caracter que le siga un espacio
+- ... -Amount- encuentra la cantidad de caracteres y multiplos.
+
+### Digitos: \d
+
+- Encuentra todos los digitos (0-9)
+- Es equivalente a utilizar [0-9] === \d
+- Para encontrar lo contrario a solo digitos se utiliza \D
+
+### Palabras: \w
+
+- Encuentra todo lo que puede ser parte de una palabra, tanto letras (minúsculas o mayúsculas) como números. Es equivalente a poner [a-zA-Z0-9_]
+- Para encontrar lo contrario a palabras se utiliza \W
+
+### Espacios: \s
+
+- Encuentra todos los espacios (los saltos de línea también son espacios \n)
+- Para encontrar lo contrario a espacios se utiliza \S
+
+### Escapar caracter: \\ -caracter-
+
+- Para escapar un caracter reservado sea ".", "-" y mas se escapan utilizando **\\**
+
+## Delimitadores
+
+Los delimitadores se utilizan para definir cuantas veces debe de hacer match la clase
+
+### \*
+
+- Debe de hacer match **cero o mas veces**.
+
+### +
+
+- Debe de hacer match **una o mas veces**.
+
+### ?
+
+- Debe de hacer match **cero o una sola vez**.
+- Tambien tiene la funcion de hacer los **matches en grupos pequeños**
+
+Ejemplos:
+
+- [a-z]? : Define que el match puede estar una sola vez o no estar o sea una letra minuscula de la (a) a la (z).
+- \d\*: Define que puede estar muchas veces o no estar un digito.
+- \d+: Define que puede estar muchas veces o una sola vez un digito.
+
+- \d\*[a-z]: Define digitos y luego letras
+- \d\*[a-z]s: Define que termine en s y antes existan o no digitos
+- \d\*[a-z]?s\: Define que termine en y antes exista o no, una letra de la a-z o un caracter
+
+## Clases
+
+Todo lo que se use dentro de [ ] sera tomado como un clase.
+
+Ejemplo:
+
+- **[\\-\\.]?**: Define que puede o no tener un guion o punto
+
+## Contadores
+
+Aplicando a un carácter que lo preceda se puede colocar entre llaves de esta forma {cota inferior, cota superior}, para indicarle que busque la cantidad deseada de caracteres.
+
+Ejemplos:
+
+- **\d{0,2}**: Esto buscara 0, 1, 2 dígitos
+- **\d{2,2}**: Esto buscara 2 dígitos
+- **\d{2}**: Esto buscara 2 dígitos
+- **\d{2,}**: Esto buscara 2 o más dígitos.
+- **\d{2,4}**: Esto buscara 2, 3, 4 dígitos.
+- **\d{2,2}\-?**: Esto buscara 2 digitos y puede o no haber un guion (-)
+
+- **\d{2,2}[\-\.]?\d{2,2}[\-\.]?\d{2,2}[\-\.]**: Esto matchea 55-55-55 | 56.78-98 | 56.75.54 Se puede escribir asi: **(\d{2,2}[\-\.]?){3,3}**
+
+## (^) Not, [(^) principio y final de linea ($)]
+
+### ^ Negacion
+
+Sirve para negar matches. Funciona solo utilizando **clases**.
+
+Ejemplo:
+
+- **[^1-3]**: Encuentra todos los digitos menos del range 1 - 3.
+
+### Principio ^ y final de linea $
+
+Sirve para matchear **solo una linea**.
+
+Ejemplo:
+
+- Esta regex **^\w+,\w+,\w+$** equivale a **^(\w+,?){3,3}$**
