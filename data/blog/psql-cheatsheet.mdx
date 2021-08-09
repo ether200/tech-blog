@@ -1,0 +1,182 @@
+---
+title: "PSQL cheatsheet"
+publishedAt: "2021-08-08"
+summary: "Small cheatsheet of a crash posgreSQL course."
+image: "/postgresql.jpeg"
+subject: "PSQL"
+writtenBy: "Ivan. M"
+---
+
+# PostgreSQL
+
+Small cheatsheet of a crash posgreSQL course.
+
+### SQL Shell Comands.
+
+- \q = showcase all the commands
+- \! cls = clear command line
+- psql -- help
+- \q = quit
+- \l = show list of databases
+- \d = inside of a db it shows the different tables
+- \d {table name} = more info of a table
+- \c {dbname} = connect to database or switch
+
+Doc to sql types = https://www.postgresql.org/docs/9.5/datatype.html
+
+### CREATION 
+
+- CREATE DATABASE {name}; = create database.
+- DROP DATABASE {name}; = delete database.
+- CREATE TABLE {tablename} ({columnName} {datatype} !{constraint}); = create table.
+- DROP TABLE {tablename}; = delete table.
+
+**EJ: CREATE TABLE person ( id INT, first_name VARCHAR(50), last_name VARCHAR(50), gender VARCHAR(7), date_of_birth DATE );**
+
+**EJ WITH CONSTRAINTS : CREATE TABLE person ( id BIGSERIAL NOT NULL PRIMARY KEY, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, gender VARCHAR(6) NOT NULL, email VARCHAR(150) )*;**
+
+### INSERT
+
+- INSERT into person ({columnName}) VALUES({valName}); = inser data into table.
+
+**EJ: INSERT INTO person (first_name, last_name, gender, date_of_birth) VALUES ('Anne', 'Smith', 'FEMALE', date '1988-01-09');**
+
+### SELECT
+
+- SELECT * FROM {table}; = get everything from table.
+- SELECT {column} FROM {table}; = get column data from a table.
+
+**EJ: SELECT first_name, last_name FROM {person};**
+
+### SORTING (ORDER BY)
+
+- SELECT * FROM person ORDER BY country_of_birth *default is ASC !== DESC*
+- SELECT * FROM person ORDER BY id, email;
+
+### DISTINCT 
+
+- SELECT DISTINCT country_of_birth FROM person ORDER BY countr_of_birth *DISTINCT remove duplicate*
+
+### WHERE (filter)
+
+- SELECT * FROM person WHERE gender = 'Female';
+- SELECT * FROM person WHERE gender = 'Male' AND country_of_birth = 'Argentina';
+- SELECT * FROM person WHERE gender = 'Male' AND (country_of_birth = 'Argentina' OR country_of_birth = 'Brazil');
+
+### LIMIT OFFSET and FETCH
+
+- SELECT * FROM person LIMIT 10;
+- SELECT * FROM person OFFSET 5 = GET FROM 6 ONWARDS;
+- SELECT * FROM person OFFSET 5 LIMIT 5; = GET FROM 6 UP TO 10;
+
+### BETWEEN
+
+- SELECT * FROM person WHERE date_of_birth BETWEEN DATE '2000-01-01' AND '2015-01-01';
+
+### LIKE (follow pattern)
+
+- SELECT * FROM person WHERE email LIKE '%.com';
+- SELECT * FROM person WHERE email LIKE '%@bloomberg.%'; % stands for any
+- SELECT * FROM person WHERE email LIKE '____@bloomberg.%'; 4 chars before @
+
+### GROUP BY
+
+We need to specify the count fn to group the numbers of people from each country.
+
+- SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth;
+
+### HAVING ( condition at least by )
+
+- SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5 ORDER BY country_of_birth;
+
+### MAX, MIN, & AVG FN
+
+- SELECT MAX(price) FROM car;
+- SELECT ROUND(AVG(price)) FROM car;
+
+### SUM FN
+
+- SELECT SUM(price) FROM car;
+- SELECT make, SUM(price) FROM car GROUP BY make;
+
+### ARITMETIC
+
+last arg of ROUND is decimal places.
+
+- SELECT id, make, model, price, ROUND(price * .10, 2) FROM car; 
+- SELECT id, make, model, price, ROUND(price * .10, 2), ROUND(price - (price * .10), 2) FROM car;
+
+### ALIAS (set a name to new or existing columns)
+
+- SELECT id, make, model, price AS origina_price, ROUND(price * .10, 2) AS ten_percent, ROUND(price - (price * .10), 2) AS discount_after_10_percent FROM car;
+
+### COALESCE
+
+We want to select all the people that have no email and return a default value.
+
+- SELECT COALEASCE (email, 'Email not provided') FROM person;
+
+### NULLIF 
+
+Takes 2 args, returns the first arg if the second arg is not equal to the first.
+
+### EXTRACT
+
+- SELECT EXTRACT(YEAR FROM NOW());
+- SELECT EXTRACT(MONTH FROM NOW());
+- SELECT EXTRACT(DAT FROM NOW());
+
+### AGE FN
+
+- SELECT first_name, last_name, gender, country_of_birth, AGE(NOW(), date_of_birth) AS age FROM person;
+
+### ALTER TABLE (MODIFY TABLE)
+
+- ALTER TABLE person DROP CONSTRAINT person_pkey; --DELETE PRIMARY KEY
+- ALTER TABLE person ADD PRIMARY KEY (id);
+
+### UNIQUE CONSTRAINTS
+
+- ALTER TABLE person ADD CONSTRAINT unique_email_address UNIQUE (email);
+
+### CHECK CONSTRAINTS (match values)
+
+- ALTER TABLE person ADD CONSTRAIN gender_constraint CHECK (gender = 'Female' OR gender = 'Male');
+
+### DELETE RECORD
+
+- DELETE FROM person WHERE id = 1;
+
+### UPDATE RECORD
+
+- UPDATE person SET email = 'yareyare@gmail.com' WHERE id = 2011;
+
+### ON CONFLICT (only works on unique columns and has a constraint)
+
+- INSERT INTO person (id) VALUES (id *that already exist*) ON CONFLICT (id) DO NOTHING; *has no effect*
+- INSERT INTO person (id) VALUES (id *that already exist*) ON CONFLICT (id) DO UPDATE SET email = EXCLUDED.email; *changes the email anyway*
+
+### RELATIONSHIP FOREIGN KEY
+
+*name of column* BIGINT REFERENCES *table* (*column table*),
+car_id BIGINT REFERENCES car (id),
+
+### INNER JOINS (combine tables A + B = C *if has same row values*)
+
+- SELECT * FROM person JOIN car ON person.car_id = car.id;
+- YOU CAN SELECT COLUMNS AND NOT ONLY * EVERYTHING *
+- YOU CAN USE THE KWORD USING
+
+### LEFT JOINS (combine everything even if they don't match, and have relationship foreign key or NOT)
+
+- SELECT * FROM person LEFT JOIN car ON car.id = person.car_ID
+
+### INSTALL EXTENSION
+
+- CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+- select * from pg_available_extensions; to see em
+- \df search for functions"
+
+### EXPORT TO CSV
+
+- \copy (SELECT * FROM person LEFT JOIN car ON car.id = person.car_id) TO '/Users/Ivan/Desktop/results.csv' DELIMITER ',' CSV HEADER;
